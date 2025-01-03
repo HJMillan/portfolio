@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Exo+2:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Exo+2:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Rubik",sans-serif;
+}
+body{
+    background: rgb(255,60,0);
+    background: radial-gradient(circle, #ff3c00 0%, #ff3c00 79%, #1c1c1c 79%,#1c1c1c 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    text-align: center;
+}
+.fecha span{
+    font-weight: 600;
+}
+.cuenta-atras{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+.grupo{
+    line-height: 1;
+}
+.grande{
+    font-family: "Bricolage Grotesque",sans-serif;
+    font-size: 6rem;
+    font-weight: 800;
+}
+
+@media(width <500px){
+    .cuenta-atras{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media(width <350px){
+    .cuenta-atras{
+        display: flex;
+        flex-direction: column;
+    }
+}
