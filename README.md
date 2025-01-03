@@ -29,7 +29,7 @@ Este repositorio está en constante actualización. Subo nuevos proyectos a medi
 
 Si deseas conocer más sobre mis proyectos o colaborar en alguna iniciativa, no dudes en contactarme a través de:
 - **LinkedIn:** [Henry Jesús Millán Saravia](https://www.linkedin.com/)
-- **Correo Electrónico:** hjs.millaln@gmail.com
+- **Correo Electrónico:** hjs.millan@gmail.com
 
 ¡Gracias por visitar mi portafolio! Espero que te gusten los proyectos y que puedas ver el progreso continuo en mi aprendizaje.
 
