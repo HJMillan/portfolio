@@ -72,6 +72,8 @@ h5{
   height: calc(100vh - 200px);
   color: white;
   margin-left: 100px;
+  max-width: 900px;
+  text-align: justify;
 }
 
 /* Secciones */
@@ -163,4 +165,18 @@ a:visited{
   100% {
     background-position: 0% 50%;
   }
+}
+
+/* Estilo para navegadores basados en WebKit */
+::-webkit-scrollbar {
+  width: 0;  /* Oculta el ancho */
+  height: 0; /* Oculta el alto (para scroll horizontal) */
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent; /* Fondo transparente */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* Pista transparente */
 }
