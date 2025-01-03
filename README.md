@@ -12,7 +12,7 @@ Este repositorio sirve como una muestra de los proyectos que he desarrollado y e
 
 ## Proyectos Destacados
 
-- **Cronómetro Fin de Cumpleaños* - Un contador regresivo interactivo para eventos específicos.
+- **Cronómetro Fin de Cumpleaños** - Un contador regresivo interactivo para eventos específicos.
 - **Agenda Ya** - Una aplicación cultural para mostrar eventos y entretenimiento local.
 - **Calculadora** - una aplicacion web que realiza operaciones basicas.
 
@@ -28,7 +28,7 @@ Este repositorio está en constante actualización. Subo nuevos proyectos a medi
 ## Contacto
 
 Si deseas conocer más sobre mis proyectos o colaborar en alguna iniciativa, no dudes en contactarme a través de:
-- **LinkedIn:** [Henry Jesús Millán Saravia](https://www.linkedin.com/)
+- **LinkedIn:** [Henry Jesús Millán Saravia]([https://www.linkedin.com/](https://www.linkedin.com/in/hjesusmillan/))
 - **Correo Electrónico:** hjs.millan@gmail.com
 
 ¡Gracias por visitar mi portafolio! Espero que te gusten los proyectos y que puedas ver el progreso continuo en mi aprendizaje.
