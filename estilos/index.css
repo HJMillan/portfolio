@@ -1,13 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "orbitron", sans-serif;
+  font-family: "Courier Prime", sans-serif;
 }
 body {
-  background: linear-gradient(120deg, #151173, #090c31);
+  background: linear-gradient(120deg, #015173, #040615);
   background-size: 200% 200%;
   animation: gradientBG 6s ease infinite;
   height: 100vh;
@@ -21,19 +22,19 @@ h3{
   color: #ff7518;
 }
 h5{
-  color: #ffc866;
+  color: #FF9D5C;
 }
 .barra .encabezado{
   width: 100%;
 }
 .encabezado {
-  color: white;
+  color: #c1c1c1;
   margin-top: 100px;
   padding: 20px;
   overflow-y: auto;
 }
 .barra {
-  color: white;
+  color: #c1c1c1;
   padding: 20px;
   height: 100vh;
   overflow-y: auto;
@@ -60,7 +61,7 @@ h5{
 
 .barra ul li a:hover,
 .barra ul li a.active {
-  color: #ffc866;
+  color: #FF9D5C;
 }
 
 /* Contenido */
@@ -143,7 +144,15 @@ html,body {
   outline: none;
   box-shadow: 0 0 5px #ffffff;
 }
-
+a{
+  text-decoration: none;
+}
+a:link{
+  color: orange;
+}
+a:visited{
+  color: orange;
+}
 @keyframes gradientBG {
   0% {
     background-position: 0% 50%;
