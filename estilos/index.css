@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "orbitron", sans-serif;
+}
+body {
+  background: linear-gradient(120deg, #151173, #090c31);
+  background-size: 200% 200%;
+  animation: gradientBG 6s ease infinite;
+  height: 100vh;
+}
+.todo {
+  display: grid;
+  grid-template-columns: minmax(250px, 300px) 1fr;
+  height: 100vh;
+}
+h3{
+  color: #ff7518;
+}
+h5{
+  color: #ffc866;
+}
+.barra .encabezado{
+  width: 100%;
+}
+.encabezado {
+  color: white;
+  margin-top: 100px;
+  padding: 20px;
+  overflow-y: auto;
+}
+.barra {
+  color: white;
+  padding: 20px;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+.barra ul {
+  list-style: none;
+  margin-top: 40px; /* Separación mayor para el nav */
+}
+
+.barra ul li {
+  margin: 10px 0;
+}
+
+.barra ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.barra ul li a:hover,
+.barra ul li a.active {
+  background-color: #ff7518; /* Naranja calabaza */
+  color: #fff;
+}
+
+/* Contenido */
+.contenido {
+  padding: 20px;
+  margin-top: 100px;
+  overflow-y: auto;
+  height: calc(100vh - 200px);
+  color: white;
+  margin-left: 100px;
+}
+
+/* Secciones */
+.contenido section {
+  margin-bottom: 50px;
+}
+
+.contenido h2 {
+  margin-bottom: 10px;
+}
+
+.contenido p {
+  line-height: 1.6;
+  color: #c1c1c1;
+}
+html,body {
+  overflow: hidden;
+}
+
+.barra ul li a:focus {
+  outline: 2px solid #a5bfcc;
+}
+.pieBarra {
+  margin-top: auto;
+  bottom: 0;
+  width: 100%;
+  max-width: 300px;
+
+  padding: 10px 0;
+  text-align: center;
+  left: 0;
+}
+
+.pieBarra .iconos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.pieBarra .iconos img {
+  width: 30px;
+  height: 30px;
+  margin: 0 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+.mis-iconos {
+  fill: #ff7518;
+}
+.barra ul li a {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.barra ul li a:hover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background-color: white;
+}
+.pieBarra .iconos img:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 5px #ffffff);
+}
+.barra ul li a:focus {
+  outline: none;
+  box-shadow: 0 0 5px #ffffff;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
