@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Home, AlertCircle } from 'lucide-react';
+import { Button } from '@/components/ui/Button';
 
 export default function NotFound() {
   return (
@@ -19,13 +20,12 @@ export default function NotFound() {
           La página que buscás no existe o fue movida.
         </p>
       </div>
-      <Link
-        to="/"
-        className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md bg-accent text-bg hover:bg-accent-hover transition-colors"
-      >
-        <Home size={14} />
-        Volver al inicio
+      <Link to="/">
+        <Button variant="primary" size="md" icon={<Home size={14} />}>
+          Volver al inicio
+        </Button>
       </Link>
     </div>
   );
 }
+

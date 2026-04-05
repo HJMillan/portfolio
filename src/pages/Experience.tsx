@@ -18,7 +18,7 @@ export default function Experience() {
 
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute left-[15px] top-4 bottom-4 w-px bg-border-subtle" />
+          <div className="absolute left-4 top-4 bottom-4 w-px bg-border-subtle" />
 
           <div className="space-y-4">
             {linkedinData.experience.map((exp, index) => (
@@ -28,7 +28,7 @@ export default function Experience() {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {/* Dot */}
-                <div className="absolute left-[10px] top-5 w-[11px] h-[11px] rounded-full bg-accent-alt border-2 border-surface z-10" />
+                <div className="absolute left-2.5 top-5 size-3 rounded-full bg-accent-alt border-2 border-surface z-10" />
 
                 <Card padding="md" className="hover:border-accent-alt/40">
                   <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-2">
@@ -138,9 +138,10 @@ export default function Experience() {
                       href={sanitizeUrl(cert.url)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-text-muted hover:text-success transition-colors"
+                      className="p-3 -m-1 text-text-muted hover:text-success rounded-md hover:bg-success/5 transition-colors"
+                      aria-label={`Ver certificado: ${cert.name}`}
                     >
-                      <ExternalLink size={14} />
+                      <ExternalLink size={16} />
                     </a>
                   )}
                 </div>

@@ -90,7 +90,7 @@ export function StackChart({ languages, loading }: StackChartProps) {
                   <span className="text-xs font-semibold text-text-primary font-mono">
                     {hovered.percentage.toFixed(1)}%
                   </span>
-                  <span className="text-[11px] text-text-muted font-mono">
+                  <span className="text-xs text-text-muted font-mono">
                     {hovered.language}
                   </span>
                 </>

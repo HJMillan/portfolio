@@ -9,6 +9,7 @@ import {
 import { PROJECTS_DATA } from '@/data/projects';
 import { sanitizeUrl } from '@/lib/utils';
 import { Card } from '@/components/ui/Card';
+import { Badge } from '@/components/ui/Badge';
 
 const ICONS = [
   MonitorSmartphone,
@@ -23,7 +24,7 @@ export default function Projects() {
     <div className="space-y-6">
       {/* Cabecera */}
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-text-primary">Proyectos y Colaboraciones</h1>
+        <h2 className="text-xl font-bold text-text-primary">Proyectos y Colaboraciones</h2>
         <p className="text-text-secondary mt-1">
           Sistemas comerciales, plataformas en producción y proyectos en los
           que he colaborado (código cerrado).
@@ -38,7 +39,7 @@ export default function Projects() {
             <Card
               key={project.id}
               padding="none"
-              className="group flex flex-col hover:-translate-y-1 hover:shadow-glow-accent hover:border-accent/40 transition-all duration-300"
+              className="group flex flex-col hover:-translate-y-1 hover:shadow-(--shadow-glow-accent) hover:border-accent/40 transition-all duration-300"
             >
               {/* Header Visual Compacto */}
               <div className="h-28 bg-surface-hover/30 border-b border-border-subtle relative overflow-hidden">
@@ -70,15 +71,11 @@ export default function Projects() {
                   {project.description}
                 </p>
 
-                {/* Badges */}
                 <div className="flex flex-wrap gap-2">
                   {project.techStack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2.5 py-1 text-[11px] font-medium rounded-full bg-surface-hover text-text-secondary border border-border-subtle"
-                    >
+                    <Badge key={tech} size="sm" variant="outline">
                       {tech}
-                    </span>
+                    </Badge>
                   ))}
                 </div>
               </div>
@@ -89,7 +86,7 @@ export default function Projects() {
                   href={sanitizeUrl(project.liveUrl)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between w-full p-3 rounded-lg bg-surface border border-border-subtle text-sm font-medium text-text-primary hover:bg-neutral-800 dark:hover:bg-neutral-100 hover:text-white dark:hover:text-black transition-colors focus:ring-2 focus:ring-accent/50 focus:outline-none"
+                  className="flex items-center justify-between w-full p-3 rounded-lg bg-surface border border-border-subtle text-sm font-medium text-text-primary hover:bg-surface-active hover:text-accent transition-colors focus:ring-2 focus:ring-accent/50 focus:outline-none"
                 >
                   Visitar Web Oficial
                   <ExternalLink size={16} />

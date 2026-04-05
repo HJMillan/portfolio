@@ -36,7 +36,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
       {/* Mobile hamburger button */}
       <button
         onClick={() => setMobileOpen(true)}
-        className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-md bg-surface border border-border-subtle text-text-secondary hover:text-accent transition-colors cursor-pointer"
+        className="lg:hidden fixed top-4 left-4 z-50 p-2.5 rounded-md bg-surface border border-border-subtle text-text-secondary hover:text-accent transition-colors cursor-pointer min-w-11 min-h-11 flex items-center justify-center"
         aria-label="Abrir menú"
       >
         <Menu size={20} />
@@ -75,10 +75,10 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
       >
         <button
           onClick={() => setMobileOpen(false)}
-          className="absolute top-4 right-4 text-text-muted hover:text-text-primary transition-colors cursor-pointer"
+          className="absolute top-3 right-3 p-2 rounded-md text-text-muted hover:text-text-primary hover:bg-surface-hover transition-colors cursor-pointer min-w-11 min-h-11 flex items-center justify-center"
           aria-label="Cerrar menú"
         >
-          <X size={18} />
+          <X size={20} />
         </button>
         <SidebarContent
           collapsed={false}

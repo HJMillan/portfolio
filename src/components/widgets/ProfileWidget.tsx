@@ -1,21 +1,24 @@
-import { Mail as MailIcon, Sparkles } from 'lucide-react';
+import { Mail as MailIcon, Sparkles, Check } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
-import { FULL_NAME, TITLE, SUBTITLE, BIO, SOCIAL_LINKS } from '@/data/personal';
+import { FULL_NAME, TITLE, SUBTITLE, BIO, SOCIAL_LINKS, EMAIL_ADDRESS } from '@/data/personal';
 import { GitHubIcon, LinkedInIcon } from '@/components/ui/BrandIcons';
 import { sanitizeUrl } from '@/lib/utils';
+import { useClipboard } from '@/hooks/useClipboard';
 import profileAvatar from '@/assets/profile-avatar.png';
 
 export function ProfileWidget() {
+  const { copied, copy: handleCopyEmail } = useClipboard(EMAIL_ADDRESS);
+
   return (
     <Card variant="glass" padding="lg" className="relative overflow-hidden">
       {/* Gradient accent line at top */}
-      <div className="absolute top-0 left-0 right-0 h-[2px] bg-linear-to-r from-accent via-accent-alt to-accent" />
+      <div className="absolute top-0 left-0 right-0 h-0.5 bg-linear-to-r from-accent via-accent-alt to-accent" />
 
       <div className="flex flex-col items-center text-center gap-4">
         {/* Avatar with animated gradient border */}
         <div className="relative">
-          <div className="w-24 h-24 rounded-full p-[2px] bg-linear-to-br from-accent to-accent-alt animate-pulse-glow">
+          <div className="w-24 h-24 rounded-full p-0.5 bg-linear-to-br from-accent to-accent-alt animate-pulse-glow">
             <img
               src={profileAvatar}
               alt={FULL_NAME}
@@ -34,7 +37,7 @@ export function ProfileWidget() {
         </div>
 
         {/* Open to work badge */}
-        <Badge color="#22C55E" size="md" variant="outline">
+        <Badge color="var(--color-success)" size="md" variant="outline">
           <Sparkles size={12} className="mr-1" />
           Disponible para trabajar
         </Badge>
@@ -59,19 +62,27 @@ export function ProfileWidget() {
             href={sanitizeUrl(SOCIAL_LINKS.linkedin)}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 rounded-md bg-surface-hover text-text-secondary hover:text-[#0A66C2] hover:bg-[#0A66C2]/10 transition-all duration-200"
+            className="p-2 rounded-md bg-surface-hover text-text-secondary hover:text-linkedin hover:bg-linkedin/10 transition-all duration-200"
             aria-label="LinkedIn"
           >
             <LinkedInIcon size={18} />
           </a>
-          <a
-            href={sanitizeUrl(SOCIAL_LINKS.email)}
-            className="p-2 rounded-md bg-surface-hover text-text-secondary hover:text-accent-alt hover:bg-accent-alt/10 transition-all duration-200"
-            aria-label="Email"
+          <button
+            type="button"
+            onClick={handleCopyEmail}
+            className="p-2 rounded-md bg-surface-hover text-text-secondary hover:text-accent-alt hover:bg-accent-alt/10 transition-all duration-200 cursor-pointer"
+            aria-label="Copiar email"
           >
-            <MailIcon size={18} />
-          </a>
+            {copied ? <Check size={18} className="text-success" /> : <MailIcon size={18} />}
+          </button>
         </div>
+
+        {/* Toast de confirmación */}
+        {copied && (
+          <span className="text-xs text-success font-medium animate-fade-in">
+            ✓ Email copiado al portapapeles
+          </span>
+        )}
       </div>
     </Card>
   );

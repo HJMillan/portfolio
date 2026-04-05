@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import type { ReactNode, ErrorInfo } from 'react';
 import { AlertTriangle, RefreshCw } from 'lucide-react';
+import { Button } from '@/components/ui/Button';
 
 interface Props {
   readonly children: ReactNode;
@@ -40,7 +41,7 @@ export class ErrorBoundary extends Component<Props, State> {
       if (this.props.fallback) return this.props.fallback;
 
       return (
-        <div className="flex flex-col items-center justify-center min-h-[300px] gap-4 p-8 text-center">
+        <div className="flex flex-col items-center justify-center min-h-72 gap-4 p-8 text-center">
           <div className="w-16 h-16 rounded-full bg-error/10 flex items-center justify-center">
             <AlertTriangle size={28} className="text-error" />
           </div>
@@ -53,13 +54,14 @@ export class ErrorBoundary extends Component<Props, State> {
               Ocurrió un error inesperado. Por favor, recargá la página.
             </p>
           </div>
-          <button
+          <Button
+            variant="primary"
+            size="md"
+            icon={<RefreshCw size={14} />}
             onClick={this.handleRetry}
-            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md bg-accent text-bg hover:bg-accent-hover transition-colors cursor-pointer"
           >
-            <RefreshCw size={14} />
             Reintentar
-          </button>
+          </Button>
         </div>
       );
     }

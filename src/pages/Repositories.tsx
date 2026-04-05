@@ -3,7 +3,7 @@ import { useGitHubRepos } from '@/hooks/useGitHubRepos';
 import { RepoCard } from '@/components/widgets/RepoCard';
 import { SearchBar } from '@/components/ui/SearchBar';
 import { Badge } from '@/components/ui/Badge';
-import { getLanguageColor } from '@/lib/utils';
+import { cn, getLanguageColor } from '@/lib/utils';
 
 const SORT_LABELS: Record<'updated' | 'stars' | 'name', string> = {
   updated: 'Recientes',
@@ -76,11 +76,12 @@ export default function Repositories() {
             <button
               key={option}
               onClick={() => setSortBy(option)}
-              className={`px-3 py-1.5 text-xs rounded-md border transition-all duration-200 cursor-pointer ${
+              className={cn(
+                'px-3 py-2.5 text-xs rounded-md border transition-all duration-200 cursor-pointer',
                 sortBy === option
                   ? 'border-accent/40 bg-accent/10 text-accent'
                   : 'border-border-subtle bg-surface text-text-muted hover:text-text-secondary'
-              }`}
+              )}
             >
               {SORT_LABELS[option]}
             </button>
@@ -93,7 +94,7 @@ export default function Repositories() {
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => setLanguageFilter(null)}
-            className={`cursor-pointer ${languageFilter ? 'opacity-50 hover:opacity-80' : ''}`}
+            className={cn('cursor-pointer', languageFilter && 'opacity-50 hover:opacity-80')}
           >
             <Badge size="md" variant={languageFilter ? 'outline' : 'filled'}>
               Todos
@@ -105,7 +106,7 @@ export default function Repositories() {
               onClick={() =>
                 setLanguageFilter(languageFilter === lang ? null : lang)
               }
-              className={`cursor-pointer ${languageFilter === lang ? '' : 'opacity-60 hover:opacity-90'}`}
+              className={cn('cursor-pointer', languageFilter !== lang && 'opacity-60 hover:opacity-90')}
             >
               <Badge
                 size="md"
@@ -125,7 +126,7 @@ export default function Repositories() {
         {search && ` para "${search}"`}
         {languageFilter && ` en ${languageFilter}`}
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filtered.map((repo, index) => (
           <RepoCard key={repo.id} repo={repo} index={index} />
         ))}

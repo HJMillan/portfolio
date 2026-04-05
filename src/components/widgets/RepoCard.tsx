@@ -91,7 +91,7 @@ export function RepoCard({ repo, index = 0 }: Readonly<RepoCardProps>) {
             )}
 
             {/* Updated */}
-            <span className="text-[11px] text-text-muted ml-auto font-mono">
+            <span className="text-xs text-text-muted ml-auto font-mono">
               {timeAgo(repo.updated_at)}
             </span>
           </div>

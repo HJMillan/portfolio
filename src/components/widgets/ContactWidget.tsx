@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { Mail, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { Mail, Send, CheckCircle, AlertCircle, Check } from 'lucide-react';
 import { GitHubIcon, LinkedInIcon } from '@/components/ui/BrandIcons';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
-import { SOCIAL_LINKS, FULL_NAME } from '@/data/personal';
+import { SOCIAL_LINKS, FULL_NAME, EMAIL_ADDRESS } from '@/data/personal';
 import { sanitizeUrl } from '@/lib/utils';
+import { useClipboard } from '@/hooks/useClipboard';
 
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error' | 'cooldown';
 
@@ -61,6 +62,9 @@ export function ContactWidget() {
   const [status, setStatus] = useState<FormStatus>('idle');
   const [validationError, setValidationError] = useState<string | null>(null);
   const [honeypot, setHoneypot] = useState('');
+  const { copied: emailCopied, copy: handleCopyEmail } = useClipboard(EMAIL_ADDRESS);
+
+
 
   async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -167,25 +171,33 @@ export function ContactWidget() {
             href={sanitizeUrl(SOCIAL_LINKS.linkedin)}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 p-4 rounded-md bg-surface-hover border border-border-subtle hover:border-[#0A66C2]/30 hover:bg-[#0A66C2]/5 transition-all duration-200 group"
+            className="flex items-center gap-3 p-4 rounded-md bg-surface-hover border border-border-subtle hover:border-linkedin/30 hover:bg-linkedin/5 transition-all duration-200 group"
           >
-            <LinkedInIcon size={20} className="text-text-muted group-hover:text-[#0A66C2] transition-colors" />
+            <LinkedInIcon size={20} className="text-text-muted group-hover:text-linkedin transition-colors" />
             <div>
               <p className="text-sm font-medium text-text-primary">LinkedIn</p>
               <p className="text-xs text-text-muted">hjesusmillan</p>
             </div>
           </a>
 
-          <a
-            href={sanitizeUrl(SOCIAL_LINKS.email)}
-            className="flex items-center gap-3 p-4 rounded-md bg-surface-hover border border-border-subtle hover:border-accent-alt/30 hover:bg-accent-alt/5 transition-all duration-200 group"
+          <button
+            type="button"
+            onClick={handleCopyEmail}
+            className="flex items-center gap-3 p-4 rounded-md bg-surface-hover border border-border-subtle hover:border-accent-alt/30 hover:bg-accent-alt/5 transition-all duration-200 group cursor-pointer"
           >
-            <Mail size={20} className="text-text-muted group-hover:text-accent-alt transition-colors" />
-            <div>
-              <p className="text-sm font-medium text-text-primary">Email</p>
-              <p className="text-xs text-text-muted">Contacto directo</p>
+            {emailCopied
+              ? <Check size={20} className="text-success transition-colors" />
+              : <Mail size={20} className="text-text-muted group-hover:text-accent-alt transition-colors" />
+            }
+            <div className="text-left">
+              <p className="text-sm font-medium text-text-primary">
+                {emailCopied ? '¡Copiado!' : 'Email'}
+              </p>
+              <p className="text-xs text-text-muted">
+                {emailCopied ? 'Email en el portapapeles' : 'Copiar al portapapeles'}
+              </p>
             </div>
-          </a>
+          </button>
         </div>
       </Card>
 
@@ -282,7 +294,7 @@ export function ContactWidget() {
                 value={message}
                 onChange={(e) => setMessage(e.target.value.slice(0, MAX_MESSAGE))}
                 disabled={status === 'submitting'}
-                className="w-full px-3 py-2 text-sm bg-surface border border-border-subtle rounded-md text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-all duration-200 resize-none disabled:opacity-50"
+                className="input-base resize-none"
               />
               {/* ✅ H-4: Contador de caracteres */}
               <p className="text-xs text-text-muted text-right mt-1">

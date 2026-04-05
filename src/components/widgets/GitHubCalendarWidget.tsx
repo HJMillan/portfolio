@@ -24,7 +24,7 @@ export function GitHubCalendarWidget() {
             totalCount: '{{count}} contribuciones en el último año',
           }}
           style={{
-            color: '#A1A1AA',
+            color: 'var(--color-text-secondary)',
           }}
         />
       </div>

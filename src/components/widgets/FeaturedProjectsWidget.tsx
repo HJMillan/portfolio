@@ -1,6 +1,7 @@
 import { ExternalLink, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { cn, sanitizeUrl } from '@/lib/utils';
+import { Badge } from '@/components/ui/Badge';
 
 import { PROJECTS_DATA } from '@/data/projects';
 
@@ -22,16 +23,15 @@ export function FeaturedProjectsWidget() {
 
       {/* Horizontal Scroll Container */}
       <div 
-        className="flex overflow-x-auto snap-x snap-mandatory pb-4 -mx-1 px-1 gap-4 lg:gap-6"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        className="flex overflow-x-auto snap-x snap-mandatory pb-4 -mx-1 px-1 gap-4 lg:gap-6 scrollbar-hide"
       >
         {PROJECTS_DATA.map((project) => (
           <article
             key={project.id}
             className={cn(
-              'shrink-0 snap-start w-[85vw] md:w-[45%] lg:w-[32%]',
+              'shrink-0 snap-start w-[calc(100vw-4rem)] sm:w-[70vw] md:w-[45%] lg:w-[32%]',
               'flex flex-col bg-surface border border-border-subtle rounded-xl overflow-hidden',
-              'transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-border-muted group'
+              'transition-all duration-300 hover:-translate-y-1 hover:shadow-(--shadow-card-hover) hover:border-border group'
             )}
           >
             {/* Content Area */}
@@ -45,15 +45,11 @@ export function FeaturedProjectsWidget() {
                 </p>
               </div>
 
-              {/* Tech Stack */}
               <div className="flex flex-wrap gap-2 mb-auto">
                 {project.techStack.slice(0, 3).map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-2 py-1 text-[11px] font-medium rounded-md bg-surface-hover text-text-secondary border border-border-subtle"
-                  >
+                  <Badge key={tech} size="sm" variant="outline">
                     {tech}
-                  </span>
+                  </Badge>
                 ))}
               </div>
 
@@ -62,7 +58,7 @@ export function FeaturedProjectsWidget() {
                 href={sanitizeUrl(project.liveUrl)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full mt-2 inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-text-primary bg-surface-hover border border-border-subtle hover:bg-neutral-800 dark:hover:bg-neutral-100 hover:text-white dark:hover:text-black rounded-lg transition-colors focus:ring-2 focus:ring-accent/50 focus:outline-none"
+                className="w-full mt-2 inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-text-primary bg-surface-hover border border-border-subtle hover:bg-surface-active hover:text-accent rounded-lg transition-colors focus:ring-2 focus:ring-accent/50 focus:outline-none"
               >
                 Visitar Web
                 <ExternalLink size={16} />

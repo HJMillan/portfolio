@@ -22,8 +22,8 @@ const accentMap = {
 const glowMap = {
   teal: 'shadow-(--shadow-glow-accent)',
   purple: 'shadow-(--shadow-glow-alt)',
-  green: 'shadow-[0_0_20px_rgba(34,197,94,0.15)]',
-  amber: 'shadow-[0_0_20px_rgba(245,158,11,0.15)]',
+  green: 'shadow-(--shadow-glow-success)',
+  amber: 'shadow-(--shadow-glow-warning)',
 } as const;
 
 export function KPICard({

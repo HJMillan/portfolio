@@ -12,12 +12,12 @@ export const BIO =
   'Profesional orientado al desarrollo de soluciones tecnológicas escalables con enfoque en arquitectura frontend moderna, diseño de interfaces de usuario y análisis de sistemas empresariales. Apasionado por transformar problemas complejos en experiencias digitales intuitivas y de alto rendimiento.';
 
 // Obfuscation against automated bundle scrapers
-const _emailParts = ['contacto', 'jesusmillan.dev'];
+const _emailParts = ['jesusmillan86', 'gmail.com'];
+export const EMAIL_ADDRESS = `${_emailParts[0]}@${_emailParts[1]}`;
 
 export const SOCIAL_LINKS = {
   github: `https://github.com/${GITHUB_USERNAME}`,
   linkedin: 'https://www.linkedin.com/in/hjesusmillan/',
-  email: `mailto:${_emailParts[0]}@${_emailParts[1]}`,
 } as const;
 
 export const CV_URL = 'https://www.linkedin.com/in/hjesusmillan/';

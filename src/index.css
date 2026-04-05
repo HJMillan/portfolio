@@ -39,6 +39,15 @@
   --shadow-card-hover: 0 4px 12px 0 rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.4);
   --shadow-glow-accent: 0 0 20px rgba(45, 212, 191, 0.15);
   --shadow-glow-alt: 0 0 20px rgba(168, 85, 247, 0.15);
+  --shadow-glow-success: 0 0 20px rgba(34, 197, 94, 0.15);
+  --shadow-glow-warning: 0 0 20px rgba(245, 158, 11, 0.15);
+
+  /* Brand */
+  --color-linkedin: #0A66C2;
+
+  /* Typography micro sizes */
+  --font-size-2xs: 10px;
+  --font-size-2xs--line-height: 14px;
 
   /* Radii */
   --radius-sm: 6px;
@@ -172,4 +181,25 @@ body {
   width: 0;
   z-index: -1;
   pointer-events: none;
+}
+
+/* ============================================
+   INPUT BASE — Shared styles for all form inputs
+   ============================================ */
+.input-base {
+  @apply w-full px-3 py-2 text-sm bg-surface border border-border-subtle rounded-md
+         text-text-primary placeholder:text-text-muted focus:outline-none
+         focus:border-accent/50 focus:ring-1 focus:ring-accent/20
+         transition-all duration-200 disabled:opacity-50;
+}
+
+/* ============================================
+   SCROLLBAR HIDE — utility for scroll containers
+   ============================================ */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

@@ -8,7 +8,7 @@ import {
 import { Card } from '@/components/ui/Card';
 import type { GitHubRepo } from '@/types';
 import linkedinData from '@/data/linkedin-data';
-import { timeAgo } from '@/lib/utils';
+import { cn, timeAgo } from '@/lib/utils';
 
 interface ActivityTimelineProps {
   repos: GitHubRepo[];
@@ -48,7 +48,7 @@ export function ActivityTimeline({ repos }: Readonly<ActivityTimelineProps>) {
 
       <div className="relative">
         {/* Vertical line */}
-        <div className="absolute left-[15px] top-2 bottom-2 w-px bg-border-subtle" />
+        <div className="absolute left-4 top-2 bottom-2 w-px bg-border-subtle" />
 
         <div className="space-y-4">
           {items.slice(0, 10).map((item, index) => {
@@ -61,7 +61,10 @@ export function ActivityTimeline({ repos }: Readonly<ActivityTimelineProps>) {
               >
                 {/* Icon */}
                 <div
-                  className={`relative z-10 w-[30px] h-[30px] rounded-full border flex items-center justify-center shrink-0 ${colorMap[item.type]}`}
+                  className={cn(
+                    'relative z-10 size-8 rounded-full border flex items-center justify-center shrink-0',
+                    colorMap[item.type]
+                  )}
                 >
                   <Icon size={14} />
                 </div>
@@ -77,7 +80,7 @@ export function ActivityTimeline({ repos }: Readonly<ActivityTimelineProps>) {
                 </div>
 
                 {/* Time */}
-                <span className="text-[11px] text-text-muted font-mono whitespace-nowrap pt-1">
+                <span className="text-xs text-text-muted font-mono whitespace-nowrap pt-1">
                   {item.date}
                 </span>
               </div>
