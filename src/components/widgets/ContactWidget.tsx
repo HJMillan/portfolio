@@ -5,58 +5,138 @@ import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { SOCIAL_LINKS, FULL_NAME } from '@/data/personal';
+import { sanitizeUrl } from '@/lib/utils';
 
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error' | 'cooldown';
 
-// ✅ H-7: Formspree ID via variable de entorno — permite rotación sin re-deploy
-const FORMSPREE_URL = `https://formspree.io/f/${import.meta.env.VITE_FORMSPREE_ID}`;
+// ✅ H-7: FormSubmit email/hash via variable de entorno — permite rotación sin re-deploy
+const FORMSUBMIT_URL = `https://formsubmit.co/ajax/${import.meta.env.VITE_FORMSUBMIT_TO}`;
 
-// ✅ H-4: Límites de longitud del formulario (MAX_EMAIL según RFC 5321)
+// ✅ H-4: Límites de longitud del formulario
 const MAX_NAME = 100;
-const MAX_EMAIL = 254;
+const MIN_NAME = 2;
+const MAX_EMAIL = 254;  // RFC 5321
 const MAX_MESSAGE = 2000;
-// ✅ H-5: Rate limiting — cooldown de 30s entre envíos (defensa contra spam de cuota Formspree)
-const SUBMIT_COOLDOWN_MS = 30_000;
+const MIN_MESSAGE = 10;
+const PHONE_LENGTH = 10;
+// Solo letras (incluyendo acentos/ñ) y espacios
+const NAME_REGEX = /^[a-zA-ZÀ-ɏ\s]+$/;
+// Exactamente 10 dígitos
+const PHONE_REGEX = /^\d{10}$/;
+
+// ✅ H-5: Rate limiting persistente — sobrevive recargas, tabs y navegación SPA
+const RL_STORAGE_KEY = 'contact_rl';
+const BASE_COOLDOWN_MS = 30_000;    // 30s base
+const MAX_COOLDOWN_MS = 120_000;    // 2min máximo
+
+// ✅ H-6: Validación de email más estricta que type="email" del navegador
+const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
+
+/** Lee timestamp + contador de envíos de localStorage */
+function getRateLimitState(): { lastSubmit: number; attempts: number } {
+  try {
+    const raw = localStorage.getItem(RL_STORAGE_KEY);
+    if (!raw) return { lastSubmit: 0, attempts: 0 };
+    const parsed = JSON.parse(raw) as { lastSubmit?: number; attempts?: number };
+    return {
+      lastSubmit: typeof parsed.lastSubmit === 'number' ? parsed.lastSubmit : 0,
+      attempts: typeof parsed.attempts === 'number' ? parsed.attempts : 0,
+    };
+  } catch {
+    return { lastSubmit: 0, attempts: 0 };
+  }
+}
+
+function setRateLimitState(lastSubmit: number, attempts: number): void {
+  try {
+    localStorage.setItem(RL_STORAGE_KEY, JSON.stringify({ lastSubmit, attempts }));
+  } catch { /* quota exceeded — silently fail */ }
+}
 
 export function ContactWidget() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
   const [status, setStatus] = useState<FormStatus>('idle');
+  const [validationError, setValidationError] = useState<string | null>(null);
   const [honeypot, setHoneypot] = useState('');
-  const [lastSubmitTime, setLastSubmitTime] = useState(0);
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
-    // Bot trap: if honeypot is filled, fake success
+    setValidationError(null);
+
+    // Bot trap
     if (honeypot) { setStatus('success'); return; }
 
-    // ✅ H-5: Rate limiting en cliente — 30s entre envíos
+    // ✅ H-4: Trim + validación de longitud mínima
+    const trimmedName = name.trim();
+    const trimmedEmail = email.trim();
+    const trimmedMessage = message.trim();
+
+    if (trimmedName.length < MIN_NAME) {
+      setValidationError(`El nombre debe tener al menos ${MIN_NAME} caracteres.`);
+      return;
+    }
+    if (!NAME_REGEX.test(trimmedName)) {
+      setValidationError('El nombre solo puede contener letras y espacios.');
+      return;
+    }
+    if (!EMAIL_REGEX.test(trimmedEmail)) {
+      setValidationError('Ingresá un email válido.');
+      return;
+    }
+    if (trimmedMessage.length < MIN_MESSAGE) {
+      setValidationError(`El mensaje debe tener al menos ${MIN_MESSAGE} caracteres.`);
+      return;
+    }
+    const trimmedPhone = phone.trim();
+    if (!PHONE_REGEX.test(trimmedPhone)) {
+      setValidationError(`El teléfono debe tener exactamente ${PHONE_LENGTH} dígitos numéricos.`);
+      return;
+    }
+
+    // ✅ H-5: Rate limiting persistente con cooldown progresivo
+    const rl = getRateLimitState();
     const now = Date.now();
-    if (now - lastSubmitTime < SUBMIT_COOLDOWN_MS) {
+    const cooldown = Math.min(BASE_COOLDOWN_MS * Math.pow(2, rl.attempts), MAX_COOLDOWN_MS);
+    if (now - rl.lastSubmit < cooldown) {
       setStatus('cooldown');
       return;
     }
 
-    setLastSubmitTime(now);
     setStatus('submitting');
 
     try {
-      const res = await fetch(FORMSPREE_URL, {
+      const res = await fetch(FORMSUBMIT_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ name, email, message }),
+        body: JSON.stringify({
+          name: trimmedName,
+          email: trimmedEmail,
+          phone: trimmedPhone,
+          message: trimmedMessage,
+          _subject: `Portfolio — Mensaje de ${trimmedName}`,
+          _template: 'table',
+          _captcha: 'false',
+          _honey: honeypot,
+        }),
       });
+
+      // Registrar envío (exitoso o no) para rate limiting
+      setRateLimitState(now, rl.attempts + 1);
 
       if (res.ok) {
         setStatus('success');
         setName('');
         setEmail('');
+        setPhone('');
         setMessage('');
       } else {
         setStatus('error');
       }
     } catch {
+      setRateLimitState(now, rl.attempts + 1);
       setStatus('error');
     }
   }
@@ -71,7 +151,7 @@ export function ContactWidget() {
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <a
-            href={SOCIAL_LINKS.github}
+            href={sanitizeUrl(SOCIAL_LINKS.github)}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-3 p-4 rounded-md bg-surface-hover border border-border-subtle hover:border-accent/30 hover:bg-accent/5 transition-all duration-200 group"
@@ -84,7 +164,7 @@ export function ContactWidget() {
           </a>
 
           <a
-            href={SOCIAL_LINKS.linkedin}
+            href={sanitizeUrl(SOCIAL_LINKS.linkedin)}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-3 p-4 rounded-md bg-surface-hover border border-border-subtle hover:border-[#0A66C2]/30 hover:bg-[#0A66C2]/5 transition-all duration-200 group"
@@ -97,7 +177,7 @@ export function ContactWidget() {
           </a>
 
           <a
-            href={SOCIAL_LINKS.email}
+            href={sanitizeUrl(SOCIAL_LINKS.email)}
             className="flex items-center gap-3 p-4 rounded-md bg-surface-hover border border-border-subtle hover:border-accent-alt/30 hover:bg-accent-alt/5 transition-all duration-200 group"
           >
             <Mail size={20} className="text-text-muted group-hover:text-accent-alt transition-colors" />
@@ -133,10 +213,10 @@ export function ContactWidget() {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
-            {/* ✅ H-3: Honeypot con clase CSS en lugar de display:none */}
+            {/* ✅ H-3: Honeypot — FormSubmit usa _honey como campo trampa */}
             <input
               type="text"
-              name="_gotcha"
+              name="_honey"
               value={honeypot}
               onChange={(e) => setHoneypot(e.target.value)}
               className="ohnohoney"
@@ -145,7 +225,7 @@ export function ContactWidget() {
               aria-hidden="true"
             />
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* ✅ H-4: maxLength en nombre */}
+              {/* ✅ H-4: Solo letras y espacios en nombre */}
               <Input
                 id="contact-name"
                 label="Nombre"
@@ -154,7 +234,10 @@ export function ContactWidget() {
                 maxLength={MAX_NAME}
                 placeholder={`Ej: ${FULL_NAME}`}
                 value={name}
-                onChange={(e) => setName(e.target.value.slice(0, MAX_NAME))}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  if (v === '' || /^[a-zA-ZÀ-ɏ\s]*$/.test(v)) setName(v.slice(0, MAX_NAME));
+                }}
                 disabled={status === 'submitting'}
               />
               {/* ✅ H-4: maxLength en email (RFC 5321) */}
@@ -170,6 +253,21 @@ export function ContactWidget() {
                 disabled={status === 'submitting'}
               />
             </div>
+            {/* Teléfono — solo dígitos, exactamente 10 */}
+            <Input
+              id="contact-phone"
+              label="Teléfono"
+              type="tel"
+              required
+              maxLength={PHONE_LENGTH}
+              placeholder="1122334455"
+              value={phone}
+              onChange={(e) => {
+                const v = e.target.value.replaceAll(/\D/g, '');
+                setPhone(v.slice(0, PHONE_LENGTH));
+              }}
+              disabled={status === 'submitting'}
+            />
             <div>
               <label htmlFor="contact-message" className="block text-xs text-text-muted mb-1.5">
                 Mensaje
@@ -191,6 +289,14 @@ export function ContactWidget() {
                 {message.length}/{MAX_MESSAGE}
               </p>
             </div>
+
+            {/* ✅ H-4: Error de validación client-side */}
+            {validationError && (
+              <div className="flex items-center gap-2 text-warning text-xs">
+                <AlertCircle size={14} />
+                <span>{validationError}</span>
+              </div>
+            )}
 
             {status === 'error' && (
               <div className="flex items-center gap-2 text-error text-xs">

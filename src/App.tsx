@@ -8,6 +8,7 @@ import { Skeleton } from '@/components/ui/Skeleton';
 const Overview = lazy(() => import('@/pages/Overview'));
 const Repositories = lazy(() => import('@/pages/Repositories'));
 const Experience = lazy(() => import('@/pages/Experience'));
+const Projects = lazy(() => import('@/pages/Projects'));
 const Contact = lazy(() => import('@/pages/Contact'));
 const NotFound = lazy(() => import('@/pages/NotFound'));
 
@@ -50,6 +51,14 @@ function App() {
               element={
                 <Suspense fallback={<PageLoader />}>
                   <Experience />
+                </Suspense>
+              }
+            />
+            <Route
+              path="proyectos"
+              element={
+                <Suspense fallback={<PageLoader />}>
+                  <Projects />
                 </Suspense>
               }
             />

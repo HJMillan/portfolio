@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { Download } from 'lucide-react';
 import { NAV_ITEMS, CV_URL } from '@/data/personal';
+import { sanitizeUrl } from '@/lib/utils';
 import { Button } from '@/components/ui/Button';
 
 export function Header() {
@@ -17,7 +18,7 @@ export function Header() {
 
       {/* Right: actions */}
       <div className="flex items-center gap-3">
-        <a href={CV_URL} target="_blank" rel="noopener noreferrer">
+        <a href={sanitizeUrl(CV_URL)} target="_blank" rel="noopener noreferrer">
           <Button variant="outline" size="sm" icon={<Download size={14} />}>
             <span className="hidden sm:inline">Descargar CV</span>
             <span className="sm:hidden">CV</span>

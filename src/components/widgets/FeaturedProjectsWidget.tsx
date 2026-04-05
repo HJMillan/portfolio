@@ -1,38 +1,8 @@
 import { ExternalLink, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { cn } from '@/lib/utils';
+import { cn, sanitizeUrl } from '@/lib/utils';
 
-interface FeaturedProject {
-  id: string;
-  title: string;
-  role: string;
-  techStack: string[];
-  liveUrl: string;
-}
-
-const MOCK_PROJECTS: FeaturedProject[] = [
-  {
-    id: 'tren-patagonico',
-    title: 'Tren Patagónico',
-    role: 'Frontend Developer',
-    techStack: ['React', 'TypeScript', 'Tailwind CSS'],
-    liveUrl: 'https://trenpatagonicosa.com.ar/',
-  },
-  {
-    id: 'autenticar-mdq',
-    title: 'MDQ Digital',
-    role: 'Full Stack Developer',
-    techStack: ['Next.js', 'Node.js', 'PostgreSQL'],
-    liveUrl: 'https://autenticar.mardelplata.gob.ar/',
-  },
-  {
-    id: 'encontrar',
-    title: 'Encontrar',
-    role: 'Frontend Architect',
-    techStack: ['React', 'Vite', 'Tailwind CSS'],
-    liveUrl: 'https://encontrar.com.ar/',
-  },
-];
+import { PROJECTS_DATA } from '@/data/projects';
 
 export function FeaturedProjectsWidget() {
   return (
@@ -55,7 +25,7 @@ export function FeaturedProjectsWidget() {
         className="flex overflow-x-auto snap-x snap-mandatory pb-4 -mx-1 px-1 gap-4 lg:gap-6"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
-        {MOCK_PROJECTS.map((project) => (
+        {PROJECTS_DATA.map((project) => (
           <article
             key={project.id}
             className={cn(
@@ -89,7 +59,7 @@ export function FeaturedProjectsWidget() {
 
               {/* Action Button */}
               <a
-                href={project.liveUrl}
+                href={sanitizeUrl(project.liveUrl)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full mt-2 inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-text-primary bg-surface-hover border border-border-subtle hover:bg-neutral-800 dark:hover:bg-neutral-100 hover:text-white dark:hover:text-black rounded-lg transition-colors focus:ring-2 focus:ring-accent/50 focus:outline-none"

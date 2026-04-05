@@ -3,6 +3,7 @@ import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { FULL_NAME, TITLE, SUBTITLE, BIO, SOCIAL_LINKS } from '@/data/personal';
 import { GitHubIcon, LinkedInIcon } from '@/components/ui/BrandIcons';
+import { sanitizeUrl } from '@/lib/utils';
 import profileAvatar from '@/assets/profile-avatar.png';
 
 export function ProfileWidget() {
@@ -46,7 +47,7 @@ export function ProfileWidget() {
         {/* Social links */}
         <div className="flex items-center gap-3 pt-2">
           <a
-            href={SOCIAL_LINKS.github}
+            href={sanitizeUrl(SOCIAL_LINKS.github)}
             target="_blank"
             rel="noopener noreferrer"
             className="p-2 rounded-md bg-surface-hover text-text-secondary hover:text-accent hover:bg-accent/10 transition-all duration-200"
@@ -55,7 +56,7 @@ export function ProfileWidget() {
             <GitHubIcon size={18} />
           </a>
           <a
-            href={SOCIAL_LINKS.linkedin}
+            href={sanitizeUrl(SOCIAL_LINKS.linkedin)}
             target="_blank"
             rel="noopener noreferrer"
             className="p-2 rounded-md bg-surface-hover text-text-secondary hover:text-[#0A66C2] hover:bg-[#0A66C2]/10 transition-all duration-200"
@@ -64,7 +65,7 @@ export function ProfileWidget() {
             <LinkedInIcon size={18} />
           </a>
           <a
-            href={SOCIAL_LINKS.email}
+            href={sanitizeUrl(SOCIAL_LINKS.email)}
             className="p-2 rounded-md bg-surface-hover text-text-secondary hover:text-accent-alt hover:bg-accent-alt/10 transition-all duration-200"
             aria-label="Email"
           >

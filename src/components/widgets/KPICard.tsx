@@ -82,7 +82,7 @@ function useCountUp(target: number | null): number {
       const elapsed = now - start;
       const progress = Math.min(elapsed / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
-      setCurrent(Math.floor(eased * target!));
+      setCurrent(Math.floor(eased * (target ?? 0)));
       
       if (progress < 1) {
         rafId = requestAnimationFrame(tick);

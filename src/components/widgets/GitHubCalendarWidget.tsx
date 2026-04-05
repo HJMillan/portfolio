@@ -16,6 +16,7 @@ export function GitHubCalendarWidget() {
           blockSize={11}
           blockMargin={3}
           fontSize={12}
+          errorMessage="Límite de peticiones a GitHub excedido temporalmente. Por favor, recarga en unos minutos."
           theme={{
             dark: ['#161B22', '#0e4429', '#006d32', '#26a641', '#2DD4BF'],
           }}

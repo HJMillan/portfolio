@@ -10,6 +10,7 @@ import {
   Menu,
   X,
   Terminal,
+  Globe,
 } from 'lucide-react';
 import { NAV_ITEMS, FULL_NAME } from '@/data/personal';
 import { cn } from '@/lib/utils';
@@ -19,6 +20,7 @@ const ICON_MAP: Record<string, React.ElementType> = {
   FolderGit2,
   Briefcase,
   Mail,
+  Globe,
 };
 
 interface SidebarProps {

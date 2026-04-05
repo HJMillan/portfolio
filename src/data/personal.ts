@@ -25,6 +25,7 @@ export const CV_URL = 'https://www.linkedin.com/in/hjesusmillan/';
 export const NAV_ITEMS: NavItem[] = [
   { label: 'Resumen', path: '/', icon: 'LayoutDashboard' },
   { label: 'Repositorios', path: '/repos', icon: 'FolderGit2' },
+  { label: 'Proyectos', path: '/proyectos', icon: 'Globe' },
   { label: 'Experiencia', path: '/experience', icon: 'Briefcase' },
   { label: 'Contacto', path: '/contact', icon: 'Mail' },
 ];
