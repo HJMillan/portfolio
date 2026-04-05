@@ -1,0 +1,64 @@
+name: Build & Deploy Portfolio
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # Cron: 06:00 UTC = 03:00 AM Argentina (UTC-3)
+    - cron: '0 6 * * *'
+  workflow_dispatch: # Manual trigger from GitHub UI
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        # ✅ H-13: Pineado a SHA inmutable (tag v4 → puede ser reasignado)
+        uses: actions/checkout@34e11489814b9fcea39b7f2768c9d1a4c348e6c1 # v4
+
+      - name: Setup Node
+        # ✅ H-13: Pineado a SHA inmutable
+        uses: actions/setup-node@49933ea5d61d4d9e08f0f3fd45d1ab64ba53d649 # v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # ✅ H-07: Auditoría de seguridad de dependencias de producción.
+      # Falla el build si existe algún CVE de severidad Alta o Crítica.
+      - name: Security Audit
+        run: npm audit --production --audit-level=high
+
+      - name: Fetch GitHub Data (GraphQL)
+        run: node scripts/fetch-github.mjs
+        env:
+          GH_GRAPHQL_TOKEN: ${{ secrets.GH_GRAPHQL_TOKEN }}
+          GITHUB_LOGIN: HJMillan
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload artifact
+        # ✅ H-13: Pineado a SHA inmutable
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
+        with:
+          path: dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        # ✅ H-13: Pineado a SHA inmutable
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
