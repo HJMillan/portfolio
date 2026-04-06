@@ -13,7 +13,7 @@ export function SearchBar({
   onChange,
   placeholder = 'Buscar...',
   className = '',
-}: SearchBarProps) {
+}: Readonly<SearchBarProps>) {
   return (
     <div className={cn('relative', className)}>
       <Search

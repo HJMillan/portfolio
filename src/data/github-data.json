@@ -5,20 +5,20 @@
     "html_url": "https://github.com/HJMillan",
     "name": "Henry Jesús Millan Saravia",
     "bio": "Systems Analysis Student at ISET",
-    "public_repos": 12,
+    "public_repos": 10,
     "public_gists": 0,
     "followers": 1,
     "following": 0,
     "created_at": "2024-07-10T23:40:48Z"
   },
   "kpis": {
-    "publicRepos": 12,
+    "publicRepos": 10,
     "followers": 1,
     "mergedPRs": 1,
-    "totalCommits": 24,
+    "totalCommits": 7,
     "totalPRContributions": 1,
     "totalIssueContributions": 0,
-    "totalContributions": 33,
+    "totalContributions": 15,
     "yearsActive": 2
   },
   "pinnedRepos": [
@@ -36,24 +36,6 @@
       "updated_at": "2024-11-07T21:47:10Z",
       "created_at": "2024-11-07T21:47:10Z",
       "pushed_at": "2024-11-07T21:47:10Z",
-      "fork": false,
-      "archived": false,
-      "homepage": null
-    },
-    {
-      "id": 4466104036,
-      "name": "asambleas-edu",
-      "full_name": "HJMillan/asambleas-edu",
-      "description": null,
-      "html_url": "https://github.com/HJMillan/asambleas-edu",
-      "language": "TypeScript",
-      "stargazers_count": 0,
-      "forks_count": 0,
-      "watchers_count": 0,
-      "topics": [],
-      "updated_at": "2026-04-01T16:50:49Z",
-      "created_at": "2026-04-01T16:50:49Z",
-      "pushed_at": "2026-04-01T16:50:49Z",
       "fork": false,
       "archived": false,
       "homepage": null
@@ -129,44 +111,44 @@
       "fork": false,
       "archived": false,
       "homepage": "https://oraculo-scrape.vercel.app"
-    }
-  ],
-  "repos": [
+    },
     {
-      "id": 4466104036,
-      "name": "asambleas-edu",
-      "full_name": "HJMillan/asambleas-edu",
+      "id": 4497029178,
+      "name": "portfolio",
+      "full_name": "HJMillan/portfolio",
       "description": null,
-      "html_url": "https://github.com/HJMillan/asambleas-edu",
+      "html_url": "https://github.com/HJMillan/portfolio",
       "language": "TypeScript",
       "stargazers_count": 0,
       "forks_count": 0,
       "watchers_count": 0,
       "topics": [],
-      "updated_at": "2026-04-01T16:50:49Z",
-      "created_at": "2026-02-23T12:51:18Z",
-      "pushed_at": "2026-04-01T16:50:45Z",
+      "updated_at": "2026-04-05T23:10:34Z",
+      "created_at": "2026-04-05T23:10:34Z",
+      "pushed_at": "2026-04-05T23:10:34Z",
       "fork": false,
       "archived": false,
-      "homepage": null
-    },
+      "homepage": "https://portfolio-sooty-xi-25.vercel.app"
+    }
+  ],
+  "repos": [
     {
-      "id": 4441358271,
-      "name": "Asambleas-back",
-      "full_name": "HJMillan/Asambleas-back",
+      "id": 4497029178,
+      "name": "portfolio",
+      "full_name": "HJMillan/portfolio",
       "description": null,
-      "html_url": "https://github.com/HJMillan/Asambleas-back",
-      "language": "C#",
+      "html_url": "https://github.com/HJMillan/portfolio",
+      "language": "TypeScript",
       "stargazers_count": 0,
       "forks_count": 0,
       "watchers_count": 0,
       "topics": [],
-      "updated_at": "2026-03-31T21:48:41Z",
-      "created_at": "2026-03-20T15:35:57Z",
-      "pushed_at": "2026-03-31T21:48:37Z",
+      "updated_at": "2026-04-05T23:10:34Z",
+      "created_at": "2026-04-05T20:16:25Z",
+      "pushed_at": "2026-04-05T23:10:31Z",
       "fork": false,
       "archived": false,
-      "homepage": null
+      "homepage": "https://portfolio-sooty-xi-25.vercel.app"
     },
     {
       "id": 4473586801,
@@ -295,24 +277,6 @@
       "homepage": null
     },
     {
-      "id": 4562793973,
-      "name": "portfolio",
-      "full_name": "HJMillan/portfolio",
-      "description": "Ire agregando mis trabajos ",
-      "html_url": "https://github.com/HJMillan/portfolio",
-      "language": "HTML",
-      "stargazers_count": 0,
-      "forks_count": 0,
-      "watchers_count": 0,
-      "topics": [],
-      "updated_at": "2025-01-03T23:03:35Z",
-      "created_at": "2025-01-02T16:59:17Z",
-      "pushed_at": "2025-01-03T23:03:32Z",
-      "fork": false,
-      "archived": false,
-      "homepage": null
-    },
-    {
       "id": 4600968939,
       "name": "geekfactory3d",
       "full_name": "HJMillan/geekfactory3d",
@@ -351,54 +315,36 @@
   ],
   "languages": [
     {
-      "language": "TypeScript",
-      "bytes": 776846,
-      "percentage": 70.73373712062994,
-      "color": "#3178c6"
+      "language": "React / TypeScript",
+      "bytes": 219745,
+      "percentage": 40.96365103954038,
+      "color": "#61DAFB"
     },
     {
       "language": "Java",
       "bytes": 120831,
-      "percentage": 11.001959448877688,
+      "percentage": 22.524648655299114,
       "color": "#b07219"
     },
     {
       "language": "CSS",
-      "bytes": 82708,
-      "percentage": 7.53076662526815,
+      "bytes": 81968,
+      "percentage": 15.280022518869806,
       "color": "#663399"
     },
     {
       "language": "HTML",
-      "bytes": 57690,
-      "percentage": 5.2528162524993895,
+      "bytes": 59963,
+      "percentage": 11.177971773118658,
       "color": "#e34c26"
     },
     {
       "language": "JavaScript",
-      "bytes": 44858,
-      "percentage": 4.084431122458271,
+      "bytes": 53932,
+      "percentage": 10.053706013172048,
       "color": "#f1e05a"
-    },
-    {
-      "language": "Python",
-      "bytes": 12459,
-      "percentage": 1.1344225635272993,
-      "color": "#3572A5"
-    },
-    {
-      "language": "Shell",
-      "bytes": 1528,
-      "percentage": 0.13912815451237767,
-      "color": "#89e051"
-    },
-    {
-      "language": "Dockerfile",
-      "bytes": 1348,
-      "percentage": 0.12273871222688816,
-      "color": "#384d54"
     }
   ],
   "contributedTo": [],
-  "fetchedAt": "2026-04-03T00:12:24.952Z"
+  "fetchedAt": "2026-04-06T21:51:34.098Z"
 }

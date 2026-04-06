@@ -4,12 +4,12 @@ export const GITHUB_USERNAME = 'HJMillan';
 
 export const FULL_NAME = 'Jesús Millán';
 
-export const TITLE = 'Analista de Sistemas & Desarrollador Frontend';
+export const TITLE = 'Frontend Developer jr | React · TypeScript · Tailwind · UI/UX';
 
-export const SUBTITLE = 'Técnico en Administración';
+export const SUBTITLE = 'Analista de Sistemas (ISET) | AI tools';
 
 export const BIO =
-  'Profesional orientado al desarrollo de soluciones tecnológicas escalables con enfoque en arquitectura frontend moderna, diseño de interfaces de usuario y análisis de sistemas empresariales. Apasionado por transformar problemas complejos en experiencias digitales intuitivas y de alto rendimiento.';
+  'Mi perfil combina la capacidad técnica para construir interfaces web modernas y una sólida experiencia en gestión y administración orientada a resultados. Enfocado en el ecosistema Frontend (React, Vite, Tailwind CSS), con especial atención en UI/UX y en la experiencia real de las personas que usan el producto.';
 
 // Obfuscation against automated bundle scrapers
 const _emailParts = ['jesusmillan86', 'gmail.com'];

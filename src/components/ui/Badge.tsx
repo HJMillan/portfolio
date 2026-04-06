@@ -15,7 +15,7 @@ export function Badge({
   color,
   size = 'sm',
   variant = 'filled',
-}: BadgeProps) {
+}: Readonly<BadgeProps>) {
   return (
     <span
       className={cn(

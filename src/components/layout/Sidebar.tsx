@@ -28,7 +28,7 @@ interface SidebarProps {
   onToggle: () => void;
 }
 
-export function Sidebar({ collapsed, onToggle }: SidebarProps) {
+export function Sidebar({ collapsed, onToggle }: Readonly<SidebarProps>) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
@@ -44,12 +44,11 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
 
       {/* Mobile overlay */}
       {mobileOpen && (
-        <div
-          className="lg:hidden fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
+        <button
+          type="button"
+          className="lg:hidden fixed inset-0 z-40 bg-black/60 backdrop-blur-sm w-full h-full m-0 p-0 border-none cursor-default"
           onClick={() => setMobileOpen(false)}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Navegación"
+          aria-label="Cerrar navegación"
         />
       )}
 
@@ -94,11 +93,11 @@ function SidebarContent({
   collapsed,
   onToggle,
   onNavigate,
-}: {
+}: Readonly<{
   collapsed: boolean;
   onToggle: () => void;
   onNavigate?: () => void;
-}) {
+}>) {
   return (
     <>
       {/* Logo */}

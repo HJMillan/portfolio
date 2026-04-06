@@ -2,69 +2,62 @@
   "experience": [
     {
       "id": "exp-1",
-      "company": "Empresa Tecnológica S.A.",
-      "role": "Desarrollador Frontend Senior",
-      "period": "2023 – Presente",
-      "startDate": "2023-03-01",
+      "company": "Autónomo",
+      "role": "Desarrollador Frontend",
+      "period": "Mar 2025 – Presente",
+      "startDate": "2025-03-01",
       "endDate": null,
-      "description": "Desarrollo de aplicaciones web complejas con React, TypeScript y Tailwind CSS. Implementación de arquitecturas escalables y patrones de diseño modernos para sistemas de gestión empresarial.",
-      "technologies": ["React", "TypeScript", "Tailwind CSS", "Node.js", "PostgreSQL"],
-      "type": "work"
-    },
-    {
-      "id": "exp-2",
-      "company": "Consultora Digital",
-      "role": "Analista de Sistemas",
-      "period": "2021 – 2023",
-      "startDate": "2021-06-01",
-      "endDate": "2023-02-28",
-      "description": "Análisis y diseño de soluciones tecnológicas para clientes corporativos. Relevamiento de requerimientos, modelado de datos y documentación técnica de sistemas distribuidos.",
-      "technologies": ["C#", ".NET", "SQL Server", "React", "Azure"],
-      "type": "work"
-    },
-    {
-      "id": "exp-3",
-      "company": "Freelance",
-      "role": "Desarrollador Web Full Stack",
-      "period": "2019 – 2021",
-      "startDate": "2019-01-01",
-      "endDate": "2021-05-31",
-      "description": "Desarrollo de sitios web y aplicaciones a medida para PyMEs. Diseño UI/UX, implementación frontend y configuración de servidores de producción.",
-      "technologies": ["JavaScript", "React", "Node.js", "Express", "MongoDB"],
+      "description": "Desarrollo de aplicaciones web y interfaces de usuario modernas, enfocadas en la experiencia del usuario (UX) y el rendimiento. Construcción de SPAs utilizando React y Vite. Diseño e implementación de componentes estilizados con Tailwind CSS. Colaboración en el diseño de prototipos y maquetación desde Figma.",
+      "technologies": ["React", "Vite", "Tailwind CSS", "JavaScript", "Figma"],
       "type": "freelance"
     }
   ],
   "education": [
     {
       "id": "edu-1",
-      "institution": "Universidad Tecnológica Nacional (UTN)",
+      "institution": "ISET",
       "degree": "Analista de Sistemas",
       "field": "Sistemas de Información",
-      "period": "2018 – 2023",
-      "description": "Formación integral en análisis, diseño y desarrollo de sistemas de información empresariales."
+      "period": "En curso",
+      "description": "Formación integral en análisis, diseño y desarrollo de sistemas de información."
     },
     {
       "id": "edu-2",
-      "institution": "Instituto Técnico",
-      "degree": "Técnico en Administración",
-      "field": "Administración de Empresas",
-      "period": "2014 – 2017",
-      "description": "Formación en gestión administrativa, contabilidad y administración de recursos."
+      "institution": "Codo a Codo",
+      "degree": "Full Stack Python",
+      "field": "Programación informática",
+      "period": "Mar 2024 – Jul 2024",
+      "description": "Desarrollo full stack con Python, bases de datos y tecnologías web."
+    },
+    {
+      "id": "edu-3",
+      "institution": "Universidad Tecnológica Nacional (UTN)",
+      "degree": "Técnico Universitario en Administración",
+      "field": "Administración",
+      "period": "2019 – 2020",
+      "description": "Formación en gestión administrativa y administración de recursos."
     }
   ],
   "certifications": [
     {
       "id": "cert-1",
-      "name": "React – The Complete Guide",
-      "issuer": "Udemy",
-      "date": "2022",
+      "name": "Introducción al Desarrollo Web: HTML y CSS",
+      "issuer": "Curso online",
+      "date": "2024",
       "url": ""
     },
     {
       "id": "cert-2",
-      "name": "TypeScript Professional",
-      "issuer": "Platzi",
-      "date": "2023",
+      "name": "#SeProgramar",
+      "issuer": "INTI",
+      "date": "2024",
+      "url": ""
+    },
+    {
+      "id": "cert-3",
+      "name": "Gestión de Recursos Humanos",
+      "issuer": "UTN",
+      "date": "2019",
       "url": ""
     }
   ]

@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { Sidebar } from './Sidebar';
 import { Header } from './Header';
 import { cn } from '@/lib/utils';
 
 export function DashboardLayout() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const location = useLocation();
 
   return (
     <div className="min-h-screen bg-bg">
@@ -32,7 +33,9 @@ export function DashboardLayout() {
         <Header />
 
         <main id="main-content" className="flex-1 p-4 lg:p-6 overflow-y-auto">
-          <Outlet />
+          <div key={location.pathname} className="animate-fade-in">
+            <Outlet />
+          </div>
         </main>
       </div>
     </div>

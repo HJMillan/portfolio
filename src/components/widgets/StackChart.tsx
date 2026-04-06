@@ -40,7 +40,7 @@ export function StackChart({ languages, loading }: StackChartProps) {
   const CENTER = SIZE / 2;
   const RADIUS = 80;
   const INNER_RADIUS = 50;
-  const hovered = hoveredIndex !== null ? data[hoveredIndex] : null;
+  const hovered = hoveredIndex === null ? null : data[hoveredIndex];
 
   return (
     <Card padding="lg">
@@ -104,9 +104,9 @@ export function StackChart({ languages, loading }: StackChartProps) {
         </div>
 
         {/* Legend */}
-        <div className="w-full lg:w-1/2 space-y-2">
+        <ul className="w-full lg:w-1/2 space-y-2 list-none m-0 p-0">
           {data.map((lang, index) => (
-            <div
+            <li
               key={lang.language}
               className="flex items-center justify-between text-xs group cursor-default"
               onMouseEnter={() => setHoveredIndex(index)}
@@ -124,9 +124,9 @@ export function StackChart({ languages, loading }: StackChartProps) {
               <span className="text-text-muted font-mono">
                 {lang.percentage.toFixed(1)}%
               </span>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </Card>
   );

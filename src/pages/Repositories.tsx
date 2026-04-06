@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { useGitHubRepos } from '@/hooks/useGitHubRepos';
+import { repos } from '@/data/github-data';
 import { RepoCard } from '@/components/widgets/RepoCard';
 import { SearchBar } from '@/components/ui/SearchBar';
 import { Badge } from '@/components/ui/Badge';
@@ -12,7 +12,6 @@ const SORT_LABELS: Record<'updated' | 'stars' | 'name', string> = {
 };
 
 export default function Repositories() {
-  const { repos } = useGitHubRepos();
   const [search, setSearch] = useState('');
   const [languageFilter, setLanguageFilter] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState<'updated' | 'stars' | 'name'>('updated');
@@ -23,7 +22,7 @@ export default function Repositories() {
       repos.map((r) => r.language).filter((lang): lang is string => !!lang)
     );
     return Array.from(set).sort((a, b) => a.localeCompare(b));
-  }, [repos]);
+  }, []);
 
   // Filter and sort
   const filtered = useMemo(() => {
@@ -57,7 +56,7 @@ export default function Repositories() {
     }
 
     return result;
-  }, [repos, search, languageFilter, sortBy]);
+  }, [search, languageFilter, sortBy]);
 
   return (
     <div className="space-y-6">

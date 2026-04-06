@@ -202,6 +202,11 @@ function transformPinnedRepo(node) {
   };
 }
 
+// Remap language labels for display (GitHub detects file types, not frameworks)
+const LABEL_REMAP = {
+  TypeScript: { language: 'React / TypeScript', color: '#61DAFB' },
+};
+
 function calculateLanguages(pinnedNodes) {
   const aggregated = {};
 
@@ -217,12 +222,15 @@ function calculateLanguages(pinnedNodes) {
   const totalBytes = Object.values(aggregated).reduce((a, b) => a + b.bytes, 0);
 
   return Object.entries(aggregated)
-    .map(([language, { bytes, color }]) => ({
-      language,
-      bytes,
-      percentage: totalBytes > 0 ? (bytes / totalBytes) * 100 : 0,
-      color,
-    }))
+    .map(([language, { bytes, color }]) => {
+      const remap = LABEL_REMAP[language];
+      return {
+        language: remap?.language ?? language,
+        bytes,
+        percentage: totalBytes > 0 ? (bytes / totalBytes) * 100 : 0,
+        color: remap?.color ?? color,
+      };
+    })
     .sort((a, b) => b.percentage - a.percentage);
 }
 

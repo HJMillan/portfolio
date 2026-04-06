@@ -1,16 +1,11 @@
-import { useGitHubRepos } from '@/hooks/useGitHubRepos';
-import { useGitHubStats } from '@/hooks/useGitHubStats';
-import { languages } from '@/data/github-data';
+import { kpis, languages } from '@/data/github-data';
 import { KPIRow } from '@/components/widgets/KPIRow';
 import { ProfileWidget } from '@/components/widgets/ProfileWidget';
 import { StackChart } from '@/components/widgets/StackChart';
 import { GitHubCalendarWidget } from '@/components/widgets/GitHubCalendarWidget';
-import { ActivityTimeline } from '@/components/widgets/ActivityTimeline';
 import { FeaturedProjectsWidget } from '@/components/widgets/FeaturedProjectsWidget';
 
 export default function Overview() {
-  const { repos } = useGitHubRepos();
-  const { kpis } = useGitHubStats();
 
   return (
     <div className="space-y-6">
@@ -35,9 +30,6 @@ export default function Overview() {
 
       {/* Featured Projects */}
       <FeaturedProjectsWidget />
-
-      {/* Activity Timeline */}
-      <ActivityTimeline repos={repos} />
     </div>
   );
 }
